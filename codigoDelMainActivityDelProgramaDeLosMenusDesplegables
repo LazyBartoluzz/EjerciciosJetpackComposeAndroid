@@ -1,0 +1,178 @@
+package com.danisable.cursocompose
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+
+
+import androidx.compose.material3.Text
+
+class MainActivity : ComponentActivity() {
+	
+	override fun onCreate(savedInstanceState: Bundle?){
+		
+		super.onCreate(savedInstanceState)
+		
+		setContent{
+			
+			init()
+			
+		}	
+	}
+}
+
+@Composable
+fun init() {
+	
+	Column (
+	
+		horizontalAlignment = Alignment.CenterHorizontally,	
+		modifier = Modifier.fillMaxSize()
+		.background(Color.Green)
+	) {
+	
+		
+		Row(
+			modifier = Modifier.fillMaxWidth().padding(all = 7.dp)
+		){
+			
+			val opcionesColor = ListOf(
+				"Rojo",
+				"Verde",
+				"Azul",
+				"Gris",
+				"Amarillo"
+			)
+			val opcionesFondoDeLetra = ListOf(
+				"Monospace",
+				"SansSerif",
+				"Serif",
+				"Normal",
+				"Cursiva"
+			)
+			
+			var expanded by remember { mutableStateOf(false) }
+			
+			var expanded2 by remember { mutableStateOf(false) }
+			
+			var colorElegidoAux by remember { mutableStateOf( Color.Black ) }
+			var fondoLetraElegidaAux by remember { mutableStateOf( FontFamily.Default ) }
+			
+			var colorElegido by remember { mutableStateOf( Color.Black ) }
+			var fondoLetraElegida by remember { mutableStateOf( FontFamily.Default ) }
+			
+			Column {
+				
+				//inicio menu desplegable
+				Button( 	
+					onClick = {
+					
+						expanded = !expanded
+					}
+					
+		 		){
+					Text( text = "colores" )
+				}
+				
+				DropdownMenu(
+					
+					expanded = expanded,
+					onDismissRequest = { expanded = false }
+					
+				){
+					
+					opcionesColor.forEach( opcion -> 
+						DropdownMenuItem(
+							text = { Text(text = opcion) },
+							onClick = {
+								
+								colorElegidoAux = when(opcion.toString()) {
+									
+									"Rojo"->Color.Red
+									"Verde"->Color.Green
+									"Azul"->Color.Blue
+									"Gris"->Color.Gray
+									
+									else -> Color.Yellow
+								}
+		
+							}	
+						)
+					) 
+				}
+				
+				//end menu desplegable
+			}
+			
+			Text(
+				
+				text = "Esto es texto",
+				fontSize = 16.sp,
+				color = colorElegido,
+				fontFamily = fondoLetraElegida,
+				
+			)
+			
+			//---------------------------------------
+			
+				Column {
+				
+				//inicio menu desplegable
+				Button( 	
+					onClick = {
+					
+						expanded2 = !expanded2
+					}
+					
+		 		){
+					Text( text = "fuentes de letra" )
+				}
+				
+				DropdownMenu(
+					
+					expanded = expanded2,
+					onDismissRequest = { expanded2 = false }
+					
+				){
+					
+					opcionesFondoDeLetra.forEach( opcion -> 
+						DropdownMenuItem(
+							text = { Text(text = opcion) },
+							onClick = {
+								
+								fondoLetraElegidaAux = when(opcion.toString()) {
+									
+									"Monospace"->FontFamily.Monospace
+									"SansSerif"->FontFamily.SansSerif
+									"Serif"->FontFamily.Serif
+									"Normal"->FontFamily.Default
+									else -> FontFamily.Cursive
+								}
+							}	
+						)
+					) 
+				}
+				
+				//end menu desplegable
+			}
+			
+			//-------------------------------------------
+			
+		}
+	
+	
+			Button( 	
+				onClick = {
+				
+					colorElegido = colorElegidoAux
+					fondoLetraElegida = fondoLetraElegidaAux
+					
+				}	
+		 	) {
+				Text( text = "Aplicar los cambios" )
+			}
+	
+	}
+	
+}
