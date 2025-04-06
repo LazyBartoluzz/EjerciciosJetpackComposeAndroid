@@ -36,6 +36,8 @@ fun init() {
 	var bandPuntoNumero1 by remember { mutableStateOf(false) }
 	var bandPuntoNumero2 by remember { mutableStateOf(false) }
 	
+	var bandParentesisDeNumero2 by remember { mutableStateOf(false) }
+	
 	Column (
 		
 		modifier = Modifier.fillMaxSize()
@@ -49,19 +51,23 @@ fun init() {
 			fontFamily = FontFamily.Monospace
 		 )
 		
-		Row {
+		Row ( modifier = Modifier.fillMaxWidth() ){
 			
 			Button(
 				onClick = { 
 					
 					if( numero1 != "" ){		
 						operadorDado = '/' 		
-
+						
 						if( numero1.get( numero1.length - 1) == '.' ){
-							numero1+="0";
+						numero1+="0";
+						}
+						if( bandParentesisDeNumero2 ){
+							cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+						}else{
+							cadenaAMostrar = "$numero1 $operadorDado $numero2"
 						}
 					}	
-					
 				}
 			){ Text(text = "/") }
 			Button(
@@ -69,11 +75,17 @@ fun init() {
 				
 					if( numero1 != "" ){		
 						operadorDado = 'X' 		
-					
 						if( numero1.get( numero1.length - 1) == '.' ){
 							numero1+="0";
 						}
+						if( bandParentesisDeNumero2 ){
+							cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+						}else{
+							cadenaAMostrar = "$numero1 $operadorDado $numero2"
+						}
 					}
+					
+				
 				}
 			){ Text(text = "X") }
 			Button(
@@ -85,6 +97,11 @@ fun init() {
 						if( numero1.get( numero1.length - 1) == '.' ){
 							numero1+="0";
 						}
+						if( bandParentesisDeNumero2 ){
+							cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+						}else{
+							cadenaAMostrar = "$numero1 $operadorDado $numero2"
+						}
 					}
 					
 				}
@@ -94,15 +111,20 @@ fun init() {
 				onClick = { 
 					if( numero1 != "" ){		
 						operadorDado = '+' 		
-					
+						
 						if( numero1.get( numero1.length - 1) == '.' ){
 							numero1+="0";
+						}
+						if( bandParentesisDeNumero2 ){
+							cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+						}else{
+							cadenaAMostrar = "$numero1 $operadorDado $numero2"
 						}
 					}
 				 }
 			){ Text(text = "+") }
 		}
-		Row {
+		Row ( modifier = Modifier.fillMaxWidth() ){
 			
 			Button(
 				onClick = { 
@@ -111,6 +133,11 @@ fun init() {
 						numero2 +="7"
 					}  else {
 						numero1 +="7"	
+					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
 					}
 				 }
 			){ Text(text = "7") }
@@ -122,6 +149,11 @@ fun init() {
 					}  else {
 						numero1 +="8"	
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 					
 				 }
 			){ Text(text = "8") }
@@ -132,10 +164,15 @@ fun init() {
 					}  else {
 						numero1 +="9"	
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 				 }
 			){ Text(text = "9") }
 		}
-		Row {
+		Row (modifier = Modifier.fillMaxWidth()) {
 			
 			Button(
 				onClick = { 
@@ -143,6 +180,11 @@ fun init() {
 						numero2 +="4"
 					}  else {
 						numero1 +="4"	
+					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
 					}
 				 }
 			){ Text(text = "4") }
@@ -153,6 +195,11 @@ fun init() {
 					}  else {
 						numero1 +="5"	
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 				 }
 			){ Text(text = "5") }
 			Button(
@@ -162,10 +209,15 @@ fun init() {
 					}  else {
 						numero1 +="6"	
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 				 }
 			){ Text(text = "6") }
 		}
-		Row {
+		Row ( modifier = Modifier.fillMaxWidth() ){
 			
 			Button(
 				onClick = { 
@@ -173,6 +225,11 @@ fun init() {
 						numero2 +="1"
 					}  else {
 						numero1 +="1"	
+					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
 					}
 				 }
 			){ Text(text = "1") }
@@ -183,6 +240,11 @@ fun init() {
 					}  else {
 						numero1 +="2"	
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 				 }
 			){ Text(text = "2") }
 			Button(
@@ -192,11 +254,16 @@ fun init() {
 					}  else {
 						numero1 +="3"	
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 				 }
 			){ Text(text = "3") }
 		}
 		
-		Row {
+		Row ( modifier = Modifier.fillMaxWidth() ){
 			
 			Button(
 				onClick = { 
@@ -207,6 +274,11 @@ fun init() {
 						if(numero1 != ""){
 							numero1 +="0"	
 						}
+					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
 					}
 				 }
 			){ Text(text = "0") }
@@ -224,6 +296,11 @@ fun init() {
 							bandPuntoNumero1 = true	
 						}
 					}
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
 					
 				 }
 			){ Text(text = ",") }
@@ -231,38 +308,58 @@ fun init() {
 				onClick = { 
 					
 					//mostrar el resultado
-
-					if(numero2 != ""){
-
-						if( numero2.get( numero2.length - 1) == '.' ){
-							numero2+="0";
-						}
-						
-						if(operadorDado == '+'){
-							
-							cadenaAMostrar = " ${ numero1.toDouble() + numero2.toDouble() } "
-						}
-						
-						if(operadorDado == '-'){
-							
-							cadenaAMostrar = " ${ numero1.toDouble() - numero2.toDouble() } "
-						}
-						
-						if(operadorDado == 'X'){
-							
-							cadenaAMostrar = " ${ numero1.toDouble() * numero2.toDouble() } "
-						}
-						
-						if(operadorDado == '/'){
-							
-							cadenaAMostrar = " ${ numero1.toDouble() / numero2.toDouble() } "
-						}
+					
+				if( numero2 != "" ){
+					
+					
+					var resultado = 0.0;
+					
+					
+					if( numero2.get( numero2.length - 1) == '.' ){
+						numero2+="0";
 					}
-				 }
+					
+					if(operadorDado == '+'){ 
+						
+						resultado = numero1.toDouble() + numero2.toDouble()
+					}
+					
+					if(operadorDado == '-'){
+						
+					
+						resultado = numero1.toDouble() - numero2.toDouble()
+					}
+					
+					if(operadorDado == 'X'){
+						
+					
+						resultado = numero1.toDouble() * numero2.toDouble()
+					}
+					
+					if(operadorDado == '/'){
+						
+						resultado = numero1.toDouble() / numero2.toDouble()
+					}
+						
+					
+					numero1 =resultado.toString()
+					numero2 =""
+						
+					operadorDado =' '
+					cadenaAMostrar = "$numero1 $operadorDado $numero2"
+						
+					bandPuntoNumero1 =true
+					bandPuntoNumero2 =false
+						
+					bandParentesisDeNumero2 = false	
+				}
+					
+					
+			}
 			){ Text(text = "=") }
 		}
 		
-		Row {
+		Row ( modifier = Modifier.fillMaxWidth() ) {
 		
 			Button(
 				onClick = { 
@@ -276,12 +373,58 @@ fun init() {
 						cadenaAMostrar = "$numero1 $operadorDado $numero2"
 						
 						bandPuntoNumero1 =false
-						bandPuntoNumero1 =false
+						bandPuntoNumero2 =false
+						
+						bandParentesisDeNumero2 = false
 				 }
 			){ Text(text = "C") }
+			
+			Button(
+				onClick = { 
+					
+					//cambio de signo
+					
+					if( operadorDado != ' ' ) {
+						
+						
+						if( numero2 != "" && ( numero2.get( 0) != '-' ) ){
+							
+							numero2 = "-" + numero2
+							bandParentesisDeNumero2 = true
+						}
+						
+						if( numero2 != "" &&  numero2.get( 0) == '-'  ){
+							
+							numero2 = numero2.drop(1)
+							bandParentesisDeNumero2 = false
+						}
+						
+					}  else {
+						
+						if( numero1 != "" && ( numero1.get( 0) != '-' ) ){
+							
+							numero1 = "-" + numero1
+						}
+						
+						if( numero1 != "" &&  numero1.get( 0) == '-'  ){
+							
+							numero1 = numero1.drop(1)
+						}
+							
+					}
+					
+					if( bandParentesisDeNumero2 ){
+						cadenaAMostrar = "$numero1 $operadorDado ($numero2)"	
+					}else{
+						cadenaAMostrar = "$numero1 $operadorDado $numero2"
+					}
+					
+				 }
+			){ Text(text = "+/-") }
+			
 		}
 		
 	}	
 	
 	
-}	
+}
