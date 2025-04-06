@@ -56,11 +56,11 @@ fun init() {
 					
 					if( numero1 != "" ){		
 						operadorDado = '/' 		
+
+						if( numero1.get( numero1.length - 1) == '.' ){
+							numero1+="0";
+						}
 					}	
-					
-					if( numero1.get( numero1.length - 1) == '.' ){
-						numero1+="0";
-					}
 					
 				}
 			){ Text(text = "/") }
@@ -69,10 +69,10 @@ fun init() {
 				
 					if( numero1 != "" ){		
 						operadorDado = 'X' 		
-					}
 					
-					if( numero1.get( numero1.length - 1) == '.' ){
-						numero1+="0";
+						if( numero1.get( numero1.length - 1) == '.' ){
+							numero1+="0";
+						}
 					}
 				}
 			){ Text(text = "X") }
@@ -81,11 +81,12 @@ fun init() {
 					
 					if( numero1 != "" ){		
 						operadorDado = '-' 		
+						
+						if( numero1.get( numero1.length - 1) == '.' ){
+							numero1+="0";
+						}
 					}
 					
-					if( numero1.get( numero1.length - 1) == '.' ){
-						numero1+="0";
-					}
 				}
 					
 			){ Text(text = "-") }
@@ -93,12 +94,11 @@ fun init() {
 				onClick = { 
 					if( numero1 != "" ){		
 						operadorDado = '+' 		
-					}
 					
-					if( numero1.get( numero1.length - 1) == '.' ){
-						numero1+="0";
+						if( numero1.get( numero1.length - 1) == '.' ){
+							numero1+="0";
+						}
 					}
-					
 				 }
 			){ Text(text = "+") }
 		}
@@ -231,31 +231,33 @@ fun init() {
 				onClick = { 
 					
 					//mostrar el resultado
-					
-					if( numero2.get( numero2.length - 1) == '.' ){
-						numero2+="0";
-					}
-					
-					if(operadorDado == '+'){
+
+					if(numero2 != ""){
+
+						if( numero2.get( numero2.length - 1) == '.' ){
+							numero2+="0";
+						}
 						
-						cadenaAMostrar = " ${ numero1.toDouble() + numero2.toDouble() } "
-					}
-					
-					if(operadorDado == '-'){
+						if(operadorDado == '+'){
+							
+							cadenaAMostrar = " ${ numero1.toDouble() + numero2.toDouble() } "
+						}
 						
-						cadenaAMostrar = " ${ numero1.toDouble() - numero2.toDouble() } "
-					}
-					
-					if(operadorDado == 'X'){
+						if(operadorDado == '-'){
+							
+							cadenaAMostrar = " ${ numero1.toDouble() - numero2.toDouble() } "
+						}
 						
-						cadenaAMostrar = " ${ numero1.toDouble() * numero2.toDouble() } "
-					}
-					
-					if(operadorDado == '/'){
+						if(operadorDado == 'X'){
+							
+							cadenaAMostrar = " ${ numero1.toDouble() * numero2.toDouble() } "
+						}
 						
-						cadenaAMostrar = " ${ numero1.toDouble() / numero2.toDouble() } "
+						if(operadorDado == '/'){
+							
+							cadenaAMostrar = " ${ numero1.toDouble() / numero2.toDouble() } "
+						}
 					}
-					
 				 }
 			){ Text(text = "=") }
 		}
